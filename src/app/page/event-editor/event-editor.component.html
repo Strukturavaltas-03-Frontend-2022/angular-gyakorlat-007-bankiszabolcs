@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12">
+      <form (ngSubmit)="onSubmit(eventsForm.value)" novalidate *ngIf="event" #eventsForm = "ngForm">
+        <div class="form-group">
+          <label for="id">ID</label>
+          <input name="id" class="form-control"
+           [(ngModel)]="event.id"
+           id="id" type="number"
+           readonly>
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input name="name" class="form-control"
+           [(ngModel)]="event.name"
+           id="name" type="text"
+           required pattern=".{8,}"
+           #eventName = "ngModel">
+          <div [hidden]="eventName.valid || eventName.pristine" class="error-message">
+            Name must be at least 8 character
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input name="date" class="form-control"
+          [(ngModel)]="event.date"
+          id="date" type="text" required
+          #eventDate = 'ngModel'>
+          <div [hidden]="eventDate.valid || eventDate.pristine" class="error-message">
+            Date must be at least 8 character
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="time">Time</label>
+          <input name="time" class="form-control"
+          [(ngModel)]="event.time"
+          id="time" type="text"
+          required
+          #eventTime = "ngModel">
+          <div [hidden]="eventTime.valid || eventTime.pristine" class="error-message">
+            Time must be at least 8 character
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input name="address" class="form-control"
+          [(ngModel)]="event.location"
+          id="address" type="text"
+           required
+           #eventAddress = 'ngModel'>
+        </div>
+        <div [hidden]="eventAddress.valid || eventAddress.pristine" class="error-message">
+          Address must be at least 8 character
+        </div>
+        <button [disabled]="!eventsForm.form.valid" type="submit" class="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
